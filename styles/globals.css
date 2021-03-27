@@ -19,3 +19,11 @@ a {
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.nav-btn {
+  @apply text-white font-bold rounded cursor-pointer;
+}
+
+.nav-btn:hover {
+  @apply bg-blue-400;
+}
