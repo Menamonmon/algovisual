@@ -1,0 +1,18 @@
+.nav-btn {
+  @apply text-white font-bold rounded cursor-pointer;
+}
+
+.nav-btn:hover {
+  @apply bg-blue-400;
+}
+
+.ddm-l {
+  display: hidden;
+}
+.ddm-t:hover + .ddm-l {
+  display: block;
+}
+
+.ddm-l:hover {
+  display: block;
+}

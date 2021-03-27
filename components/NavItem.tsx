@@ -4,7 +4,7 @@ import Link from "next/link";
 import { NavItem as Props } from "../types";
 
 const NavItem: React.FC<Props> = ({ name, path }) => (
-  <Link href={path} key={`${name}-${path}`}>
+  <Link href={path}>
     <p className="nav-btn capitalize mx-2 p-1 self-center">{name}</p>
   </Link>
 );
