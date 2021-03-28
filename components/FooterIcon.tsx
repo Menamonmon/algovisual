@@ -1,18 +1,12 @@
 import React from "react";
-import Link from "next/link";
-import { IconType } from "react-icons";
+import { SocialMediaLink } from "../types";
 
-interface Props {
-  path: string;
-  icon: IconType;
-}
-
-const FooterIcon: React.FC<Props> = ({ path, icon: Icon }) => (
-  <Link href={path}>
+const FooterIcon: React.FC<SocialMediaLink> = ({ title, path, icon: Icon }) => (
+  <a href={path}>
     <div className="bg-white text-black rounded w-8 h-8 cursor-pointer hover:bg-gray-200 mx-2 p-1">
-      <Icon className="w-full h-full" />
+      <Icon className="w-full h-full" title={title} />
     </div>
-  </Link>
+  </a>
 );
 
 export default FooterIcon;

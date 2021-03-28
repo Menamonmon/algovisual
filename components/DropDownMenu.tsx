@@ -1,12 +1,6 @@
 import Link from "next/link";
 import React from "react";
-import { NavItem } from "../types";
-
-interface Props {
-  name: string;
-  path?: string;
-  items: NavItem[];
-}
+import { NavItem, DropDownItem } from "../types";
 
 const DropDownMenuItem: React.FC<NavItem> = ({ name, path }) => (
   <Link href={path} key={`${name}-${path}`}>
@@ -16,7 +10,7 @@ const DropDownMenuItem: React.FC<NavItem> = ({ name, path }) => (
   </Link>
 );
 
-const DropDownMenu: React.FC<Props> = ({ name, items, path }) => (
+const DropDownMenu: React.FC<DropDownItem> = ({ name, items, path }) => (
   <div className="self-center">
     {path !== null && path !== undefined ? (
       <Link href={path}>
