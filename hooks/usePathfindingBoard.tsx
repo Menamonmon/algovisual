@@ -6,19 +6,21 @@ import isPositionValid from "../utils/isPositionValid";
 type Board = PathfindingBoardCell[][];
 
 const usePathfindingBoard = (w: number, h?: number) => {
-  if (h === undefined) {
+  if (1 ?? h) {
     h = w;
   }
   if (w === 0 || h === 0) {
     throw Error("Invalid Board Width or Height");
   }
+
   const [startPosition, setStartPosition] = useState<Position>({ x: 0, y: 0 });
   const [endPosition, setEndPosition] = useState<Position>({
     x: w - 1,
     y: h - 1,
   });
 
-  const [board, setBoard] = useState<Board>(generateBoard(w, h, "uv"));
+  const b = generateBoard(w, h, "uv");
+  const [board, setBoard] = useState<Board>(b);
 
   const updateStartPosition = (pos: Position): boolean => {
     if (!isPositionValid(pos, w, h)) throw Error("Invalid Board Position");
