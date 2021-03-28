@@ -23,3 +23,14 @@ export type LinksMap = {
 };
 
 export type LinksList = NavItem[];
+
+export type AlgoInfo = {
+  fullName: string;
+  wikiLink: string;
+};
+
+export type AlgoInfoMap = Map<string, AlgoInfo>;
+
+export type MenuItem = { name: string; value: string };
+
+export type PathfindingBoardCell = "visited" | "unvisited" | "wall";
