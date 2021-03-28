@@ -6,6 +6,8 @@ import AlgoPageLayout from "../components/AlgoPageLayout";
 import pathfindingInfo from "../algoinfo/pathfinding";
 import SelectorMenu from "../components/SelectorMenu";
 
+import PathfindingManager from "../components/algorithms/Pathfinding";
+
 const pathfindingInfoList = [];
 for (const [algoName, { fullName }] of pathfindingInfo) {
   pathfindingInfoList.push({ name: fullName, value: algoName });
@@ -17,6 +19,7 @@ type AlgoSettings = {
   algoName: string | null;
   fullName: string | null;
   speed: AlgoSpeed | null;
+  width: number;
 };
 
 interface SettingsBarProps {
@@ -62,6 +65,7 @@ const PathfindingPage = () => {
     algoName: null,
     fullName: null,
     speed: null,
+    width: 15,
   });
 
   return (
@@ -74,6 +78,7 @@ const PathfindingPage = () => {
     >
       <AlgoPageLayout algorithmTitle={"Pathfinding"}>
         <SettingsBar settings={settings} setSettings={setSettings} />
+        <PathfindingManager w={settings.width} algoName={settings.algoName} />
       </AlgoPageLayout>
     </Layout>
   );
