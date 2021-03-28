@@ -20,8 +20,8 @@ const DropDownMenu: React.FC<DropDownItem> = ({ name, items, path }) => (
       <p className="nav-btn hover:bg-blue-300 ddm-t mx-2 p-1">{name}</p>
     )}
     <ul className="absolute ddm-l hidden bg-blue-300 rounded capitalize mx-2 p-1">
-      {items.map((i) => (
-        <DropDownMenuItem {...i} />
+      {items.map((i, idx) => (
+        <DropDownMenuItem {...i} key={idx} />
       ))}
     </ul>
   </div>
