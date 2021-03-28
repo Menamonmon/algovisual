@@ -33,4 +33,13 @@ export type AlgoInfoMap = Map<string, AlgoInfo>;
 
 export type MenuItem = { name: string; value: string };
 
-export type PathfindingBoardCell = "visited" | "unvisited" | "wall";
+// v => visited
+// uv => unvisited
+// w => wall
+// s => start
+// e => end
+export type PathfindingBoardCell = "v" | "uv" | "w" | "s" | "e";
+
+export type Position = { x: number; y: number };
+
+export type BoardCell = PathfindingBoardCell;
