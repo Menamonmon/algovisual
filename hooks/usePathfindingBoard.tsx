@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import generateBoard from "../utils/generateBoard";
 import { PathfindingBoardCell, Position } from "../types";
 import isPositionValid from "../utils/isPositionValid";
@@ -13,11 +13,10 @@ const usePathfindingBoard = (w: number, h?: number) => {
     throw Error("Invalid Board Width or Height");
   }
 
-  const [startPosition, setStartPosition] = useState<Position>({ x: 0, y: 0 });
-  const [endPosition, setEndPosition] = useState<Position>({
-    x: w - 1,
-    y: h - 1,
-  });
+  const initStart = { x: 0, y: 0 };
+  const initEnd = { x: w - 1, y: h - 1 };
+  const [startPosition, setStartPosition] = useState<Position>();
+  const [endPosition, setEndPosition] = useState<Position>();
 
   const b = generateBoard(w, h, "uv");
   const [board, setBoard] = useState<Board>(b);
@@ -28,6 +27,7 @@ const usePathfindingBoard = (w: number, h?: number) => {
     if (currentCell === "e") {
       return false;
     }
+    if (startPosition) updateBoard(startPosition, "uv");
     updateBoard(pos, "s");
     setStartPosition(pos);
     return true;
@@ -39,6 +39,7 @@ const usePathfindingBoard = (w: number, h?: number) => {
     if (currentCell === "s") {
       return false;
     }
+    if (endPosition) updateBoard(endPosition, "uv");
     updateBoard(pos, "e");
     setEndPosition(pos);
     return true;
@@ -49,7 +50,8 @@ const usePathfindingBoard = (w: number, h?: number) => {
     cellValue: PathfindingBoardCell
   ): boolean => {
     if (!isPositionValid(pos, w, h)) throw Error("Invalid Board Position");
-    if (pos === startPosition || pos === endPosition) {
+    const currentCell = board[pos.y][pos.x];
+    if (currentCell === "s" || currentCell === "e") {
       return false;
     }
     setBoard((p) => {
@@ -59,6 +61,11 @@ const usePathfindingBoard = (w: number, h?: number) => {
     });
     return true;
   };
+
+  useEffect(() => {
+    updateStartPosition(initEnd);
+    updateEndPosition(initStart);
+  }, []);
 
   return { board, updateBoard, updateStartPosition, updateEndPosition };
 };
