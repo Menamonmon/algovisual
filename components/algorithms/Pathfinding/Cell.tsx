@@ -1,5 +1,6 @@
 import React from "react";
 import { PathfindingBoardCell, Position } from "../../../types";
+import { pathfindingCellToColor } from "../../../utils/cellToColor";
 
 interface Props {
   pos: Position;
@@ -7,25 +8,6 @@ interface Props {
   w: number;
   onMouseEnter: () => void;
 }
-
-type PathfindingBoardColor = "red" | "green" | "white" | "gray" | "blue";
-
-const cellToColor = (cell: PathfindingBoardCell): PathfindingBoardColor => {
-  switch (cell) {
-    case "e":
-      return "red";
-    case "s":
-      return "green";
-    case "uv":
-      return "white";
-    case "v":
-      return "blue";
-    case "w":
-      return "gray";
-    default:
-      throw Error("Problem with color conversion");
-  }
-};
 
 const Cell: React.FC<Props> = ({
   pos,
@@ -35,11 +17,11 @@ const Cell: React.FC<Props> = ({
 }) => {
   return (
     <div
-      className={`bg-${cellToColor(
+      className={`bg-${pathfindingCellToColor(
         cell
       )}-600 hover:bg-gray-400 hover:w-10 cursor-pointer`}
       style={{
-        borderWidth: .1,
+        borderWidth: .v1,
         borderColor: "darkgray",
         gridRow: pos.y + 1,
         gridColumn: pos.x + 1,
